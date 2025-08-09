@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TalkingLatimer</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <style>
+      body { display:flex; justify-content:center; }
+      main { max-width:900px; width:100%; padding:2rem; }
+      video { width: 100%; max-width: 520px; border-radius: 16px; background:#000; }
+      .row { display:flex; gap:12px; flex-wrap:wrap; }
+      textarea { width:100%; min-height: 90px; }
+      .muted { opacity:.75; font-size:.9rem; }
+      .grid { display:grid; gap:1rem; grid-template-columns: 1fr; }
+      @media (min-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } }
+      footer { margin-top:2rem; }
+      pre { max-height: 200px; overflow:auto; background:#111; color:#eee; padding:8px; border-radius:8px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>TalkingLatimer</h1>
+      <p class="muted">Start a session, then ask a question. The HeyGen avatar will speak Latimer’s response.</p>
+
+      <div class="grid">
+        <article>
+          <video id="avatarVideo" autoplay playsinline></video>
+        </article>
+
+        <article>
+          <header><strong>Controls</strong></header>
+          <div class="row" style="margin-top:8px">
+            <button id="startBtn">Start Session</button>
+            <button id="stopBtn" disabled>Stop Session</button>
+            <button id="interruptBtn" disabled>Interrupt Speech</button>
+          </div>
+
+          <h4 style="margin-top:16px">Ask Latimer</h4>
+          <textarea id="prompt" placeholder="e.g., Explain NIL revenue sharing like I’m 18."></textarea>
+          <div class="row">
+            <button id="askBtn" disabled>Ask (non-stream)</button>
+            <button id="askStreamBtn" disabled>Ask (pseudo-stream)</button>
+          </div>
+        </article>
+      </div>
+
+      <h4>Log</h4>
+      <pre id="log" class="muted"></pre>
+
+      <footer class="muted">Backend expected at <code>http://localhost:3001</code>. Update <code>.env</code> if needed.</footer>
+
+      <script type="module" src="/src/main.ts"></script>
+    </main>
+  </body>
+</html>
+
