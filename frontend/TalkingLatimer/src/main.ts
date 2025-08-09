@@ -32,8 +32,7 @@ function sentenceChunker() {
   return (text: string) => {
     acc += text;
     const out: string[] = [];
-    let m: RegExpExecArray | null;
-    while ((m = enders.exec(acc)) !== null) {
+    while (enders.exec(acc) !== null) {
       const cut = enders.lastIndex;
       const chunk = acc.slice(0, cut).trim();
       if (chunk) out.push(chunk);
